@@ -21,10 +21,7 @@ const PORT = process.env.PORT || 5000;
 app.use(helmet());
 
 // CORS configuration
-app.use(cors({
-  origin: process.env.CORS_ORIGIN || '*',
-  credentials: true
-}));
+app.use (cors())
 
 // Rate limiting
 const limiter = rateLimit({
@@ -45,7 +42,7 @@ if (process.env.NODE_ENV === 'development') {
 } else {
   app.use(morgan('combined'));
 }
-
+app.get("/",(req,res)=>res.json({message : 'done'}))
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api', searchRoutes);
@@ -59,7 +56,6 @@ app.get('/health', (req, res) => {
     timestamp: new Date()
   });
 });
-
 // Root endpoint
 app.get('/', (req, res) => {
   res.json({
@@ -67,6 +63,7 @@ app.get('/', (req, res) => {
     message: 'Teachers-Care API',
     version: '1.0.0',
     endpoints: {
+      home :'/',
       auth: '/api/auth/login',
       search: '/api/search',
       entity: '/api/entities/:id',
