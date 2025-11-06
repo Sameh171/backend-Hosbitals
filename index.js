@@ -7,9 +7,9 @@ import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
 
 // Routes
-import authRoutes from './routes/auth.js';
-import searchRoutes from './routes/search.js';
-import adminRoutes from './routes/admin.js';
+import authRoutes from './src/routes/auth.js';
+import searchRoutes from './src/routes/search.js';
+import adminRoutes from './src/routes/admin.js';
 
 // Load environment variables
 dotenv.config();
